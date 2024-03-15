@@ -1,63 +1,47 @@
-int ledCarGreen = 3;
-int ledCarYellow = 5;
-int ledCarRed = 7;
-int ledPedGreen = 8;
-int ledPedRed = 10;
-int botaoPed = 1;
-
 void setup()
 {
-  pinMode(ledCarGreen, OUTPUT);
-  pinMode(ledCarYellow, OUTPUT);
-  pinMode(ledCarRed, OUTPUT);
-  pinMode(ledPedGreen, OUTPUT);
-  pinMode(ledPedRed, OUTPUT);
-  pinMode(botaoPed, INPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(2, INPUT);
+  pinMode(0, OUTPUT);
 }
 
 void loop()
 {
-  digitalWrite(ledPedRed, HIGH);
-  digitalWrite(ledCarRed, LOW);
-  digitalWrite(ledCarGreen, HIGH);
-  delay(30000);
+  digitalWrite(11, HIGH);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
+  digitalWrite(7, HIGH);
+  digitalWrite(6, LOW);
   
-  digitalWrite(ledCarGreen, LOW);
-  digitalWrite(ledCarYellow, HIGH);
-  delay(30000);
-  for (int i = 0; i < 4; i++) {
-    digitalWrite(ledCarYellow, HIGH);
-    delay(500);
-    digitalWrite(ledCarYellow, LOW);
-    delay(500);
+  if (digitalRead(2) == 0) {
+    digitalWrite(11, LOW);
+    digitalWrite(12, HIGH);
+    delay(12000);
     
+    for (int i = 0; i < 4; i++) {
+    digitalWrite(12, HIGH);
+    delay(500);
+    digitalWrite(12, LOW);
+    delay(500);
+  	}
+    
+    digitalWrite(7, LOW);
+    digitalWrite(13, HIGH);
+    digitalWrite(6, HIGH);
+    delay(15000);
+    
+    for (int i = 0; i < 4; i++) {
+    digitalWrite(6, HIGH);
+    delay(500);
+    digitalWrite(6, LOW);
+    delay(500);
+  	}
+    digitalWrite(13, HIGH);
+    
+    delay(100);
   }
-  
-  digitalWrite(ledCarYellow, LOW);
-  digitalWrite(ledCarRed, HIGH);
-  delay(30000);
-  
-  if (digitalRead(botaoPed) == 0) {
-    digitalWrite(ledCarRed, LOW);
-   	digitalWrite(ledCarGreen, LOW);
-    digitalWrite(ledCarYellow, HIGH);
-  delay(15000);
-  for (int i = 0; i < 4; i++) {
-    digitalWrite(ledCarYellow, HIGH);
-    delay(500);
-    digitalWrite(ledCarYellow, LOW);
-    delay(500);
-    
-  }
-    digitalWrite(ledCarRed, HIGH);
-    digitalWrite(ledPedRed, LOW);
-    digitalWrite(ledCarYellow, LOW);
-    digitalWrite(ledPedGreen, HIGH);
-    delay(30000);
-    
-    digitalWrite(ledPedGreen, LOW);
-    digitalWrite(ledPedRed, HIGH);
-    
-  }
-
 }
